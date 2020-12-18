@@ -1,9 +1,7 @@
 answers = []
-with open("input", 'r') as file:
+with open("input.txt", 'r') as file:
       answers += [i.replace("\n", " ").split(" ") for i in file]
 str = ""
-bool = 0
-
 
 for j in answers[0]:
     l = list(j)
@@ -40,5 +38,5 @@ for j in answers[0]:
             str += l[i]
     str += " "
 
-with open("output", 'w') as file:
+with open("output.txt", 'w') as file:
     file.write(str)
