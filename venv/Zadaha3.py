@@ -68,8 +68,11 @@ def Triangle_is_Exist(kort):
 
 
 def Rect_is_Exist(cort):
-    return True if ((abs(cort[0][1] - cort[1][1]) == abs(cort[2][1] - cort[3][1])) and (
-                abs(cort[1][0] - cort[2][0]) == abs(cort[0][0] - cort[3][0]))) else False
+    a = math.sqrt((cort[1][0] - cort[0][0]) ** 2 + (cort[1][1] - cort[0][1]) ** 2)
+    b = math.sqrt((cort[2][0] - cort[1][0]) ** 2 + (cort[2][1] - cort[2][1]) ** 2)
+    c = math.sqrt((cort[3][0] - cort[2][0]) ** 2 + (cort[3][1] - cort[3][1]) ** 2)
+    d = math.sqrt((cort[0][0] - cort[3][0]) ** 2 + (cort[0][1] - cort[3][1]) ** 2)
+    return True if (a + b + c >= d) and (a + c + d >=b) and (a + b + d >= c) and (b + c + d >= a) else False
 
 
 class Triangle(object):
@@ -125,7 +128,7 @@ def isIntersect(rect, trian):
         if len(rect.get_value()) == 0:
             while f == False:
                 rect_id = input(
-                    "Введите 4 точки прямоугольника в формате: (num_x;num_y) (num_x;num_y) (num_x;num_y) (num_x;num_y)\n")
+                    "Введите 4 точки четырёхгольника в формате: (num_x;num_y) (num_x;num_y) (num_x;num_y) (num_x;num_y)\n")
                 lt = list(map(str, rect_id.split(' ')))
                 stri = ''
                 try:
@@ -211,7 +214,7 @@ f = False
 
 while f == False:
     rect_id = input(
-        "Введите 4 точки прямоугольника в формате: (num_x;num_y) (num_x;num_y) (num_x;num_y) (num_x;num_y)\n")
+        "Введите 4 точки четырёхугольника в формате: (num_x;num_y) (num_x;num_y) (num_x;num_y) (num_x;num_y)\n")
     lt = list(map(str, rect_id.split(' ')))
     stri = ''
     try:
