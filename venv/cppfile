@@ -1,0 +1,42 @@
+vctr intersection(vctr lang1, vctr lang2)
+{
+vctr result;
+for (int i = 0; i < lang1.size(); ++i)
+for (int j = 0; j < lang2.size(); ++j)
+if (lang1.at(i) == lang2.at(j))
+result.push_back(lang1.at(i));
+return result;
+}
+
+int main(){
+ifstream inputFile;
+vctr<vctr> languages;
+string line;
+int max = 0;
+//Read from file
+try{
+inputFile.open(INPUT_FILE_NAME);
+getline(inputFile, line);
+while (!inputFile.eof()){
+getline(inputFile, line);
+vctr lang = convertToIntVector(line);// переводим все чары в инт
+//получаем новый интовый вектор
+languages.push_back(lang);}
+
+inputFile.close();}
+catch (const exception& ex){
+cout << ex.what();
+return -1;}
+
+//Search the length of the max intersaction
+for(int i = 0; i < languages.size()-1; ++i)
+for (int j = i+1; j < languages.size(); ++j){
+vctr intersect = intersection(languages.at(i), languages.at(j));
+if (intersect.size() + 1 > max)
+max = intersect.size() + 1;
+}//Write to file
+ofstream outputFile(OUTPUT_FILE_NAME, ios::binary | ios::out);
+outputFile << max;
+outputFile.close();
+return 0;
+}
